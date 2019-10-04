@@ -1,18 +1,44 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter (Tailwind)`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `CodeCutting Recipes`,
+    author: `Jake Moening`,
+    description: `Learn some of my favorite recipes here.`,
+    siteUrl: `http://recipes.codecutting.com`,
   },
   plugins: [
+    // Typescript
+    `gatsby-plugin-typescript`,
+    // PostCSS for tailwind
     `gatsby-plugin-postcss`,
+    // Sharp image transformer
+    `gatsby-transformer-sharp`,
+    `gatsby-plugin-sharp`,
+    // Helmet for header info
+    `gatsby-plugin-react-helmet`,
+    // Markdown transformer
+    `gatsby-transformer-remark`,
+    // Robots.text
+    `gatsby-plugin-robots-txt`,
+    // Markdown image transformer
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {},
+          },
+        ],
+      },
+    },
+    // Typography
     {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography`,
       },
     },
-    `gatsby-plugin-react-helmet`,
+    // Filesystem sources
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -23,12 +49,18 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
+        name: `recipes`,
+        path: `${__dirname}/src/recipes/pages`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    // Manifest for PWA stuff
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
@@ -41,7 +73,30 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    `gatsby-transformer-remark`,
+    // Include recipe files as pages too (srs/pages is already included by default)
+    {
+      resolve: `gatsby-plugin-page-creator`,
+      options: {
+        path: `${__dirname}/src/recipes/pages`,
+      },
+    },
+    // Google Analytics
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-149347823-1",
+        // Setting this parameter is optional
+        anonymize: true,
+        // Setting this parameter is also optional
+        respectDNT: true,
+        // Delays sending pageview hits on route update (in milliseconds)
+        pageTransitionDelay: 0,
+        // Any additional optional fields
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: "codecutting.com",
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

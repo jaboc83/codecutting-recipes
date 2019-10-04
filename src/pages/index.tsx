@@ -1,13 +1,17 @@
+// 3rd Party
 import React from "react"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
+// Other Components
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 
+// Component
 const IndexPage = () => {
+  // GraphQL hooks
   const data = useStaticQuery(graphql`
-    query MyQuery {
+    query RecipeList {
       allMarkdownRemark {
         edges {
           node {
@@ -21,6 +25,7 @@ const IndexPage = () => {
       }
     }
   `)
+
   return (
     <Layout>
       <SEO title="Home" />

@@ -1,9 +1,12 @@
+// 3rd Party
 import React from "react"
 
+// Other Components
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const NotFoundPage = () => (
+// Component
+const NotFoundPage: React.FC = () => (
   <Layout>
     <SEO title="404: Not found" />
     <h1>NOT FOUND</h1>
