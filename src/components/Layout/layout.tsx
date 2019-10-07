@@ -10,7 +10,7 @@ import "./layout.css"
 
 // Interfaces
 interface LayoutProps {
-  children: Array<object>
+  children: Array<object> | object
 }
 
 // Component

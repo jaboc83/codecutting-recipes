@@ -2,7 +2,7 @@
 import React from "react"
 
 // Other Components
-import Layout from "../components/layout"
+import Layout from "../components/Layout/layout"
 import SEO from "../components/seo"
 
 // Component
