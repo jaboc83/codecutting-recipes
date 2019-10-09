@@ -44,30 +44,39 @@ const IndexPage = () => {
             excerpt
           }
         }
-        totalCount
       }
     }
   `)
 
   return (
     <Layout>
-      <SEO title="Home" />
-      <h1 className="text-xl">Welcome to CodeCutting Recipes</h1>
-      <div className="max-w-xl pb-2 border-b">
-        <HeroImage />
-      </div>
-      <h4>{data.allMarkdownRemark.totalCount} Posts</h4>
-      {data.allMarkdownRemark.edges.map(({ node }: MDEdge) => (
-        <div key={node.id}>
-          <Link to={node.fields.slug} className="no-decoration">
-            <h3 style={{ marginBottom: rhythm(1 / 4) }}>
-              {node.frontmatter.title}{" "}
-              <span className="text-gray-300"> - {node.frontmatter.date}</span>
-            </h3>
-            <p>{node.excerpt}</p>
-          </Link>
+      <div className="max-w-full max-h-screen flex flex-col items-center">
+        <SEO title="Home" />
+        <div className="max-w-4xl pb-2 w-full">
+          <HeroImage />
         </div>
-      ))}
+        <div className="flex w-full">
+          <h2 className="border-b pb-1 m2 italic border-gray-700 w-full">
+            The Latest{" "}
+          </h2>
+        </div>
+        <div className="max-w-full mt-4">
+          {data.allMarkdownRemark.edges.map(({ node }: MDEdge) => (
+            <div key={node.id}>
+              <Link to={node.fields.slug} className="no-decoration">
+                <h3 style={{ marginBottom: rhythm(1 / 4) }}>
+                  {node.frontmatter.title}{" "}
+                  <span className="text-gray-500">
+                    {" "}
+                    - {node.frontmatter.date}
+                  </span>
+                </h3>
+                <p>{node.excerpt}</p>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
     </Layout>
   )
 }

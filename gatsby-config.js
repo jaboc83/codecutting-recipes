@@ -63,7 +63,7 @@ module.exports = {
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/cc-icon.png`, // This path is relative to the root of the site.
       },
     },
     // Google Analytics
@@ -89,6 +89,14 @@ module.exports = {
         printRejected: true, // Print removed selectors and processed file names
         //develop: true, // Enable while using `gatsby develop`
         tailwind: true, // Enable tailwindcss support
+      },
+    },
+    {
+      resolve: `gatsby-plugin-react-svg`,
+      options: {
+        rule: {
+          include: /images/,
+        },
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

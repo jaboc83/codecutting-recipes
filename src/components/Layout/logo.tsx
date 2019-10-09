@@ -11,21 +11,21 @@ import Img from "gatsby-image"
  */
 
 // Component
-const HeroImage = () => {
+const Logo = () => {
   // GraphQl hooks
   const data = useStaticQuery(graphql`
-    query HeroImageQuery {
-      placeholderImage: file(relativePath: { eq: "hero-image.jpg" }) {
+    query LogoImageQuery {
+      placeholderImage: file(relativePath: { eq: "logo.png" }) {
         childImageSharp {
-          fluid(maxWidth: 300) {
-            ...GatsbyImageSharpFluid
+          fixed(width: 200) {
+            ...GatsbyImageSharpFixed
           }
         }
       }
     }
   `)
 
-  return <Img fluid={data.placeholderImage.childImageSharp.fluid} />
+  return <Img fixed={data.placeholderImage.childImageSharp.fixed} />
 }
 
-export default HeroImage
+export default Logo
